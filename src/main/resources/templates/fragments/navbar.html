@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4" th:fragment="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Sabor Gourmet</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <!-- Reservas eliminado del navbar -->
+        <li class="nav-item" th:if="${session.usuario != null}">
+          <a class="nav-link" th:href="@{/crear-reserva}">Crear Reserva</a>
+        </li>
+        <li class="nav-item" th:if="${session.usuario != null and session.usuario.rol == 'USER'}">
+          <a class="nav-link" th:href="@{/mesas}">Mesas</a>
+        </li>
+        <li class="nav-item" th:if="${session.usuario != null and session.usuario.rol == 'ADMIN'}">
+          <a class="nav-link" th:href="@{/mesas/crear}">Crear Mesa</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item" th:if="${session.usuario == null}">
+          <a class="nav-link" th:href="@{/registro}">Registro</a>
+        </li>
+        <li class="nav-item" th:if="${session.usuario == null}">
+          <a class="nav-link" th:href="@{/login}">Login</a>
+        </li>
+        <!-- Solo para ADMIN -->
+        <li class="nav-item" th:if="${session.usuario != null and session.usuario.rol == 'ADMIN'}">
+          <a class="nav-link" th:href="@{/administracion}">Administración</a>
+        </li>
+        <!-- Solo para USER: mensaje de bienvenida alineado junto a Logout -->
+        <li class="nav-item d-flex align-items-center ms-auto" th:if="${session.usuario != null and session.usuario.rol == 'USER'}">
+          <span class="navbar-text me-3" style="color: #fff; font-weight: bold; text-shadow: 0 0 4px #fff;">Bienvenido, <span th:text="${session.usuario.nombre}"></span></span>
+          <a class="nav-link p-0" th:href="@{/logout}" style="color: #bbb;">Logout</a>
+        </li>
+        <li class="nav-item" th:if="${session.usuario != null and session.usuario.rol != 'USER'}">
+          <a class="nav-link" th:href="@{/logout}">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

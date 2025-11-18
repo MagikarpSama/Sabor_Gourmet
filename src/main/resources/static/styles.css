@@ -1,0 +1,14 @@
+/* Unificar tamaño de fuente de la navbar en todas las páginas */
+.navbar {
+	font-size: 1rem !important;
+}
+body { font-family: Arial, sans-serif; background: #f8f8f8; font-size: 1rem; }
+h1, h2 { color: #2c3e50; }
+table { border-collapse: collapse; width: 100%; background: #fff; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+th { background: #eaeaea; }
+tr:nth-child(even) { background: #f2f2f2; }
+form { margin-bottom: 2em; background: #fff; padding: 1em; border-radius: 5px; box-shadow: 0 2px 4px #0001; }
+input, select, button { margin: 0.3em 0; padding: 0.4em; border-radius: 3px; border: 1px solid #ccc; }
+button { background: #2980b9; color: #fff; border: none; cursor: pointer; }
+button:hover { background: #3498db; }
