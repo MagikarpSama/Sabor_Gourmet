@@ -11,13 +11,13 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;
 
     public Usuario registrarUsuario(Usuario usuario) {
-        // Asignar rol ADMIN si el correo es admin@admin.local.cl
+        // Creacion de rol de usuario
         if (usuario.getUsername() != null && usuario.getUsername().equalsIgnoreCase("admin@admin.local.cl")) {
             usuario.setRol("ADMIN");
         } else {
             usuario.setRol("USER");
         }
-        // Aquí puedes agregar lógica para encriptar la contraseña si lo deseas
+        
         return usuarioRepository.save(usuario);
     }
 

@@ -17,11 +17,11 @@ public class MesaService {
     }
 
     public Mesa guardarMesa(Mesa mesa) {
-        // No permitir capacidad 0 o menor
+        // Control de capacidad de mesas
         if (mesa.getCapacidad() <= 0) {
             throw new IllegalArgumentException("La capacidad debe ser mayor a 0");
         }
-        // No permitir número duplicado (solo para nuevas mesas)
+        // Control de mesas duplicadas
         Mesa existente = mesaRepository.findByNumero(mesa.getNumero());
         if (existente != null && (mesa.getId() == null || !existente.getId().equals(mesa.getId()))) {
             throw new IllegalArgumentException("Ya existe una mesa con ese número");

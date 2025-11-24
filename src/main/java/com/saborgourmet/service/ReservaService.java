@@ -19,15 +19,15 @@ public class ReservaService {
     }
 
     public Reserva guardarReserva(Reserva reserva) {
-        // Validar cantidad de personas mayor a 0
+        // Control de cantidad de persoas
         if (reserva.getCantidadPersonas() <= 0) {
             throw new IllegalArgumentException("La cantidad de personas debe ser mayor a 0");
         }
-        // Validar que la fecha y hora no sea en el pasado
+        // control de fecha y hora
         if (reserva.getFechaHora() != null && reserva.getFechaHora().isBefore(java.time.LocalDateTime.now().plusDays(1))) {
             throw new IllegalArgumentException("La reserva debe hacerse con al menos un día de anticipación");
         }
-        // Validar que no exista una reserva activa para la misma mesa y hora
+        // Validar que no exista una reserva activa 
         if (reserva.getMesa() != null && reserva.getFechaHora() != null) {
             boolean existeConflicto = reservaRepository.findAll().stream()
                 .anyMatch(r -> r.getId() != reserva.getId() &&

@@ -40,7 +40,7 @@ public class CrearReservaController {
         if (usuario == null) {
             return "redirect:/login";
         }
-        // Crear y guardar cliente con los datos del formulario
+        // Crear y guardar cliente
         Cliente cliente = reserva.getCliente();
         if (cliente != null) {
             clienteRepository.save(cliente);
@@ -48,9 +48,9 @@ public class CrearReservaController {
         reserva.setEstado("Reservada");
         try {
             reservaService.guardarReserva(reserva);
-            // Mostrar carta de confirmación
+            // confirmación
             model.addAttribute("reserva", reserva);
-            // Determinar si es admin
+            // validar si es admin
             boolean esAdmin = false;
             if (usuario instanceof com.saborgourmet.model.Usuario) {
                 esAdmin = "ADMIN".equalsIgnoreCase(((com.saborgourmet.model.Usuario) usuario).getRol());

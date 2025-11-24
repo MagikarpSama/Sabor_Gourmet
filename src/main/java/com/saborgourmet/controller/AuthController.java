@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class AuthController {
-        // Página de inicio: solo muestra iniciar sesión si no hay sesión activa
+        // Página de inicio
     @GetMapping("/")
     public String inicio(HttpSession session) {
         Usuario usuario = (Usuario) session.getAttribute("usuario");
@@ -43,8 +43,7 @@ public class AuthController {
         if (usuarioService.buscarPorUsername(usuario.getUsername()) != null) {
             model.addAttribute("error", "El usuario ya existe");
             return "registro";
-        }
-        // El nombre ya viene del formulario y se guarda automáticamente
+        }   
         usuarioService.registrarUsuario(usuario);
         model.addAttribute("mensaje", "Usuario registrado correctamente");
         return "login";
@@ -76,7 +75,6 @@ public class AuthController {
     @Autowired
     private com.saborgourmet.service.MesaService mesaService;
 
-    // Eliminado: panel de usuario, ahora todo es administracion
 
     @GetMapping("/logout")
     public String logout(HttpSession session) {
